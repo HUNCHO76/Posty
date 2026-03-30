@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap');
+
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
+
+:root {
+	--canvas: #f4f1ea;
+	--surface: #fffefb;
+	--text: #1d1f24;
+	--muted: #656f7d;
+	--border: #d9d6cf;
+	--brand: #0f766e;
+	--brand-strong: #0d5f59;
+	--brand-soft: #ccfbf1;
+	--danger: #b91c1c;
+	--danger-soft: #fee2e2;
+	--ring: #14b8a6;
+}
+
+body {
+	font-family: 'Space Grotesk', sans-serif;
+	color: var(--text);
+	background: radial-gradient(1400px 500px at -10% -10%, #ffd5c2 0%, transparent 50%), radial-gradient(900px 500px at 110% -10%, #bfdbfe 0%, transparent 50%), var(--canvas);
+}
+
+h1,
+h2,
+h3,
+.display-serif {
+	font-family: 'Source Serif 4', serif;
+}
+
+.page-shell {
+	@apply mx-auto max-w-6xl px-4 pb-16 sm:px-6;
+}
+
+.ui-card {
+	@apply rounded-2xl border p-6 shadow-sm;
+	border-color: var(--border);
+	background: linear-gradient(180deg, #ffffff 0%, #fffefb 100%);
+}
+
+.ui-card-muted {
+	@apply rounded-2xl border p-6;
+	border-color: #dbe5f1;
+	background: #f7fbff;
+}
+
+.ui-label {
+	@apply block text-sm font-semibold tracking-wide;
+	color: #2a3038;
+}
+
+.ui-input,
+.ui-textarea {
+	@apply block w-full rounded-xl border px-4 py-3 outline-none transition;
+	border-color: var(--border);
+	background-color: #ffffff;
+}
+
+.ui-input:focus,
+.ui-textarea:focus {
+	border-color: var(--ring);
+	box-shadow: 0 0 0 4px rgb(20 184 166 / 15%);
+}
+
+.ui-error {
+	@apply text-sm;
+	color: var(--danger);
+}
+
+.ui-btn {
+	@apply inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold transition;
+}
+
+.ui-btn-primary {
+	color: #ffffff;
+	background: linear-gradient(120deg, var(--brand) 0%, #155e75 100%);
+}
+
+.ui-btn-primary:hover {
+	background: linear-gradient(120deg, var(--brand-strong) 0%, #164e63 100%);
+}
+
+.ui-btn-ghost {
+	@apply border;
+	color: #164e63;
+	border-color: #9cc7d4;
+	background-color: #ecfeff;
+}
+
+.ui-btn-danger {
+	@apply border;
+	color: #991b1b;
+	border-color: #fecaca;
+	background-color: #fff1f2;
+}
+
+.ui-alert {
+	@apply rounded-xl border px-4 py-3 text-sm;
+}
+
+.ui-alert-danger {
+	color: #991b1b;
+	border-color: #fecaca;
+	background: var(--danger-soft);
+}
+
+.ui-alert-info {
+	color: #0f4c5c;
+	border-color: #bae6fd;
+	background: #e0f2fe;
+}
+
+.ui-divider {
+	@apply my-5 h-px w-full;
+	background: linear-gradient(90deg, transparent 0%, #d0d9e8 50%, transparent 100%);
+}
+
+.fade-slide {
+	animation: fade-slide-up 340ms ease-out;
+}
+
+@keyframes fade-slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
