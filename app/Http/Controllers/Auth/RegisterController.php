@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Services\Auth\RegisterUserService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    public function __construct()
+    public function __construct(private readonly RegisterUserService $registerUserService)
     {
         $this->middleware(['guest']);
     }
@@ -19,16 +20,11 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function store(RegisterRequest $request)
+    public function store(RegisterRequest $request): RedirectResponse
     {
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = $this->registerUserService->createUser($request->validated());
 
-        auth()->attempt($request->only('email', 'password'));
+        Auth::login($user);
 
         return redirect()->route('dashboard');
     }
